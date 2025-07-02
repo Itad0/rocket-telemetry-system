@@ -1,0 +1,27 @@
+# Mosquitto Access Control List for Rocket Telemetry System
+
+# Admin user - full access
+user admin
+topic readwrite #
+
+# Ground station user - telemetry topics
+user ground_station
+topic readwrite telemetry/#
+topic readwrite command/#
+topic read status/#
+
+# STM32 flight system - publish only
+user flight_system
+topic write telemetry/#
+topic read command/#
+
+# Monitoring user - read only
+user monitor
+topic read telemetry/#
+topic read status/#
+
+# API user - specific topics
+user api_service
+topic readwrite api/#
+topic read telemetry/current
+topic write command/fault
